@@ -1,13 +1,1158 @@
 <!DOCTYPE html>
 <html>
   <head>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+	<meta charset="utf-8"/>
     <link href="css/styles.css" rel="stylesheet">
   </head>
-  <body>
+  
+  <body id="mybody" class="MYBODY">
 
-    <h1>My Website</h1>
+	<style>
+	  
+	  .MYBODY{background-color:#212121; margin:0; padding:0; overflow:hidden; height:100%}
+	 
+	 .h{
+	 overflow:hidden;
+	 left:0;
+	 right:0;
+	 top:0;
+	 bottom:0;
+	 position:absolute;
+	 width:100%;
+	 height:460px;
+	 background-color:#121212}
+	  
+	 .imgviewpager{
+	 position:absolute;
+	 border:0;
+	 width:0%;
+	 height:100%;
+	 }
+	 
+	 .imglogo{
+	 position:absolute;
+	 left:10px;
+	 top:0%;
+	 width:50%;
+	 height:50%;
+	 }
+	 
+	
+	 
+	 .dot{
+	 z-index:2;
+	 width:25px;
+	 height:25px;
+	 border-radius:50%;
+	 background-color:red;
+	 border-style:solid;
+	 border-solid:10px;
+	 border-color:transparent;
+	 margin:4px;
+	 }
+	
+	 .listmenu{
+	 display:none;
+	 left:0px;
+	 right:0px;
+	 width:100%;
+	 height:200px;
+	 background-color:#121212;
+	 align-items:center; display:flex; flex-direction:row;justify-content:left
+	 }
+	 
+	  .imginfo{
+	 width:200px;
+	 height:100px;
+	 border-radius:8;
+	 border:solid;
+	 border-solid 1px;
+	 border-color:#606060;
+	 margin-top:0px;
+	 margin-left:10px;
+	 }
+	 
+	 .textmenu{
+	 margin-left:40px;
+	 font-size:50px;
+	 font-style:italic;
+	 font-family:serif;
+	 color:#606060;
+	 }
+	 
+	 .card{
+	 width:70%;
+	 margin-top:70px;
+	 padding:2px;
+	 border-radius:7px;
+	 background:#121212;
+	 border:solid 1px;
+	 border-color:#606060;
+	 }
+	 
+	 .image{
+	 width:100%;
+	 height:300px;
+	 }
+	 
+	 .titulo{
+	 text-align:left;
+	 padding-left:10px;
+	 font-weight:bold;
+	 font-size:70%;
+	 color:#404040;
+	 }
+	 
+	 .descricao{
+	 font-style:italic;
+	 font-size:50%;
+	 text-align:left;
+	 padding-left:15px;
+	 color:#606060;
+	 }
+	 
+	 .wrapper{background:#212121;
+	 height:100%;
+	 overflow:scroll;
+	 position:relative;
+	 }
 
-    <p>This is my first website</p>
+	 .install{
+	 background:red;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:red;
+	 border-radius:4px;
+	 width:50%;
+	 height:100px;
+	 font-size:40px;
+	 color:white;
+	 display:inline-block;
+	 margin-left:330px;
+	 margin-bottom:10px;
+	 }
+	 
+	 .logotipo{
+	 padding:40px;
+	 }
+	 
+	 .Conectividade{
+	 left:0;
+	 width:300px;
+	 height:150px;
+	 margin-right:400px;
+	 }
+	 
+	 .DRAWER{
+	 display:none;
+	 width:0%;
+	 height:0px;
+	 position:absolute;
+	 left:0;
+	 top:0;
+	 right:0;
+	 bottom:0;
+	 background-color:#121212;
+	 z-index:999;
+	 }
+	 
+	 .desenvolvedora{
+	 font-style:italic;
+	 font-size:20px;
+	 color:#DDDDDD;
+	 text-align:left;
+	 margin-top:10px;
+	 margin-left:10px;
+	 padding:2px;
+	 }
+	 
+	 .Dev{
+	 align-items:center;
+	 display:flex;
+	 flex-direction:row;
+	 justify-content:left;
+	 }
+	 
+	 .SplashScreen{
+	 width:100%;
+	 height:100%;
+	 position:absolute;
+	 left:0;
+	 right:0;
+	 top:0;
+	 bottom:0;
+	 background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHpukGwAhXPI1ke46itEILRoikl-ReATmtg&usqp=CAU');
+	 z-index:1000;
+	 align-items:center;
+	 display:flex;
+	 flex-direction:row;
+	 justify-content:center;
+	 background-repeat:no-repeat;
+	 background-size:100% 100%;
+	 overflow:hidden;
+	 }
+	 
+	 .LK{
+	 color:red;
+	 font-size:20px;
+	 display:none;
+	 }
+	 
+	 
+	 
+	  .b{
+	 position:absolute;
+	 z-index:1;
+	 margin-left:85%;//85
+	 margin-right:0%;
+	 margin-top:5%;
+	 width:100px;
+	 height:100px;
+	 background-color:#121212;
+	 color:#606060;
+	 border-radius:50%;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:#606060;
+	 font-size:90px;
+	 text-align:center;
+	 line-height:1em;
+	 outline:none;
+	 }
+	 
+	 .SEARCHEDIT{
+	 position:absolute;
+	 z-index:1;
+	 left:7%;
+	 top:10%;
+	 width:72%;
+	 height:100px;
+	 background-color:#121212;
+	 border-radius:5px;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:#606060;
+	 padding-left:10px;
+	 outline:none;
+	 color:#606060;
+	 font-size:50px;
+	 font-style:italic;
+	 font-weight:bold;
+	 font-family:serif;
+	 visibility:hidden;
+	 -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+	 }
+	 
+	  .SEARCH{
+	 position:absolute;
+	 z-index:3;
+	 left:74%;
+	 top:10%;
+	 width:82px;
+	 height:82px;
+	 background-color:#121212;
+	 border-radius:50%;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:#606060;
+	 padding:10px;
+	 outline:none;
+	 }
+	 
+	 .CLOSE{
+	 position:absolute;
+	 z-index:2;
+	 left:74%;
+	 top:10%;
+	 width:80px;
+	 height:80px;
+	 background-color:#121212;
+	 border-radius:50%;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:#606060;
+	 padding:10px;
+	 outline:none;
+	 }
+	 
+	 .PANEL{
+	 display:hidden;
+	 width:100%;
+	 height:100%;
+	 position:absolute;
+	 left:0;
+	 right:0;
+	 top:0;
+	 bottom:0;
+	 z-index:999;
+	 overflow:hidden;
+	 }
+	 
+	 .privacypolicy{
+	 font-size:30px;
+	 color:red;
+	 font-family:serif;
+	 margin-left:20px;
+	 margin-right:20px;
+	 padding:30px;
+	 padding-top:50px;
+	 }
+	 
+	  .card2{
+	 width:100%;
+	 margin-top:10px;
+	 display:flex;flex-direction:row;justify-content:left
+	 }
+	 
+	 .card3{
+	 width:100%;
+	 margin-top:10px;
+	 align-items:center;display:flex;flex-direction:row;
+	 }
+	 
+	 .idioma{
+	 font-size:30px;
+	 color:red;
+	 font-family:serif;
+	 margin-left:10px;
+	 margin-right:10px;
+	 padding:20px;
+	 }
+	 
+	</style>
+	  
+	<div id="mydiv" class="h">
+	  <input id="searchedit" type="text" class="SEARCHEDIT"/>
+		
+	  <img id="close" class="CLOSE" src="/images/close.png">
+	  
+	  <img id="search" class="SEARCH" src="/images/search.png">
+	  
+	  <button id="menu" class="b">&#8801</button>
+	  
+	  <div>
+	  <img class="imgviewpager" id="game1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX0I3WGuvZPgi2ByyqDWZv4C020vVJXbi4TQ&usqp=CAU"/>
+	  <img class="imgviewpager" id="game2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJqQvGMwbsaxM4UzCINfE9c80-A5trdx2sBQ&usqp=CAU"/>
+	  <img class="imgviewpager" id="game3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwawNp1YqA6pXotTB8K9KChvsNLfFtUqZCdQ&usqp=CAU"/>
+	  </div>
+	  
 
+	  <img class="imglogo" src="images/logo.png" style="margin-top:25%"/>
+
+	  
+	  <div style="top:90%;left:50%;position:absolute;align-items:center; display:flex; flex-direction:row;justify-content:center">
+		<button id="dot1" class="dot"/>
+		<button id="dot2" class="dot"/>
+		<button id="dot3" class="dot"/>
+	  </div>
+	  
+	</div>
+	
+	<div id="viewitenss" style="margin-top:47%;height:0px">
+	 
+	</div>
+	
+	<div id="list" class="wrapper">
+	  
+	  <center id="centro" style="vertical-align: top;flex-wrap: wrap-reverse;">
+		
+		<!--
+	<div class="card" style="margin-top:15%">
+	  <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX0I3WGuvZPgi2ByyqDWZv4C020vVJXbi4TQ&usqp=CAU"/>
+	  <h1 class="titulo">Mordern Combat 5</h1>
+	  <h1 id="info1" class="descricao">Mordern Combat</h1>
+	  <button class="install">INSTALAR</button>
+	</div>
+	
+	<div class="card" style="margin-top:15%">
+	  <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJqQvGMwbsaxM4UzCINfE9c80-A5trdx2sBQ&usqp=CAU"/>
+	  <h1 class="titulo">Nova 3</h1>
+	  <h1 id="info2" class="descricao">Nova 3</h1>
+
+	</div>
+	
+	<div class="card" style="margin-top:15%">
+	  <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwawNp1YqA6pXotTB8K9KChvsNLfFtUqZCdQ&usqp=CAU"/>
+	  <h1 class="titulo">Call of Duty</h1>
+	  <h1 id="info3" class="descricao">Nova 3</h1>
+
+	</div>-->
+	
+	  </center>
+	  
+	
+	  <div style="background:#242424">
+		
+		<hr style="width:100%; height:1px;border:0; background:#121212">
+		
+	  <h1 class="privacypolicy">CG © 2021. "CENTRAL GAMES" é uma pagina de games da CG</h1>
+	  
+	    <hr style="width:100%; height:1px;border:0; background:red">
+		
+	  <div class="card2">
+		
+		<div>
+		  <!--
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://i.pinimg.com/originals/e4/1d/64/e41d64f1c2bb2aee0ffc3bef82640179.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logonoid.com/images/gameloft-logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logosmarcas.net/wp-content/uploads/2020/08/Electronic-Arts-Logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4_Hw7EDaAfg_XEvTapfTwBisIWLaeDV6lrQ&usqp=CAU"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr-1At9Nwof64f1MiGuQHd6oCw62EX_hGvEg&usqp=CAU"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/pt/6/6d/Bandai_Namco_Entertainment_logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://i.pinimg.com/originals/35/5c/41/355c41387b0d5144ec039a3bbcd5e814.png"/>-->
+		  
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://i.pinimg.com/originals/e4/1d/64/e41d64f1c2bb2aee0ffc3bef82640179.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logodownload.org/wp-content/uploads/2019/12/pubg-logo-0-768x768.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logodownload.org/wp-content/uploads/2020/10/garena-logo-768x204.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://www.outerspace.com.br/wp-content/uploads/2018/10/respawn.jpg"/>
+		
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logonoid.com/images/gameloft-logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="http://www.tycoon360.com.br/wp-content/uploads/2018/10/Logo-Activision.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://www.pngkit.com/png/full/379-3795936_madfinger-games-booming-games.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/AZUR_GAMES_LOGO.svg/1280px-AZUR_GAMES_LOGO.svg.png"/>
+	
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://logosmarcas.net/wp-content/uploads/2020/08/Electronic-Arts-Logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/en/c/cb/Naturalmotion.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4_Hw7EDaAfg_XEvTapfTwBisIWLaeDV6lrQ&usqp=CAU"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/pt/d/d0/CDProjekt_2014_logo.svg.png"/>
+		  
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr-1At9Nwof64f1MiGuQHd6oCw62EX_hGvEg&usqp=CAU"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/pt/f/f3/NetherRalmLogo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://upload.wikimedia.org/wikipedia/pt/6/6d/Bandai_Namco_Entertainment_logo.png"/>
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTNX9t38zHcPmNjKyGRxSXLLkyCOTLK37lVQ&usqp=CAU"/>
+		  
+		  <img class="logotipo" style="width:150px; height:100px;" src="https://i.pinimg.com/originals/35/5c/41/355c41387b0d5144ec039a3bbcd5e814.png"/>
+		  
+		  
+		</div>
+		
+		
+	  </div>
+	  
+	  <hr style="width:100%; height:1px;border:0; background:red">
+		
+		<div class="card3">
+		  <img class="logotipo" style="width:100px; height:100px;" src="https://cdn.iconscout.com/icon/free/png-512/earth-global-globe-international-map-planet-world-2-12510.png"/>
+		  <h1 class="idioma" style="margin-bottom:20px">Português</h1>
+		  <img class="logotipo" style="width:200px; height:200px; margin-left:30%" src="/images/logo3.png"/>
+		</div>
+		
+		<div class="card3">
+		  <img class="logotipo" style="width:100px; height:100px;" src="/images/Facebook.png"/>
+		  <img class="logotipo" style="width:100px; height:100px;" src="/images/Twitter.png"/>
+		  <img class="logotipo" style="width:100px; height:100px;" src="/images/Instragram.png"/>
+		</div>
+		
+		<div class="card3">
+		  <h1 class="privacypolicy" style="margin-bottom:20px">© 2021 CG - todos os direitos reservados</h1>
+		</div>
+		
+	  </div>
+	  
+	</div>
+	
+	<div id="panel"/>
+	
+	<div id="drawer" class="DRAWER" style="height:2000px">
+	  
+	  <div style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHpukGwAhXPI1ke46itEILRoikl-ReATmtg&usqp=CAU');position:absolute;width:100%;height:400px;">
+	  <img src="/images/logo3.png" style="width:50%;height:50%;margin-top:25%"/>
+	  </div>
+	  
+	  <div id="viewitens" style="margin-top:60%;height:100%;">
+		<div id="top1" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxh2x1-nswitchds-fortnite-chapter2-season2-image1280w.jpg.pagespeed.ic.f1e09831fc.jpg"/>
+		  <h4 class="textmenu">Jogos de Battle Royale</h4>
+		</div>
+		<div id="top2" class="listmenu">
+		  <img class="imginfo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCw2vjrYyr4fGX0-6NYB1lfkOXw-yJi-6x5g&usqp=CAU"/>
+		  <h4 class="textmenu">Jogos de Ação</h4>
+		</div>
+		<div id="top3" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxi1zccnzdxptpesh.jpg.pagespeed.ic.6ff0eb2444.jpg"/>
+		  <h4 class="textmenu">Jogos De Corrida</h4>
+		</div>
+		<div id="top4" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxthe-legend-of-zelda-breath-of-the-wild-switch-hero.jpg.pagespeed.ic.9bb72de90f.jpg"/>
+		  <h4 class="textmenu">Jogos De Aventura</h4>
+		</div>
+		<div id="top5" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxapps-31077-70804610839547354-8da93c46-fd13-4b16-8ebe-e8e02c53d93e.jpg.pagespeed.ic.afa078b8db.jpg"/>
+		  <h4 class="textmenu">Jogos De Luta</h4>
+		</div>
+		<div id="top6" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxk2-items-src-4b117d276fec117bc8820e5c4f0be830-1280x720.jpg.pagespeed.ic.8a66a941c0.jpg"/>
+		  <h4 class="textmenu">Jogos De RPG</h4>
+		</div>
+		<div id="top7" class="listmenu">
+		  <img class="imginfo" src="https://www.oficinadanet.com.br/imagens/post/32473/660xNxfifa-20-fifa-2020-envio-imediato-ps4-1-lancamento-d-nq-np-835264-mlb31213479354-062019-f.jpg.pagespeed.ic.4cab5bda87.jpg"/>
+		  <h4 class="textmenu">Jogos De Esporte</h4>
+		</div>
+	  </div>
+	  
+	</div>
+	
+	<div id="SplashScreen" class="SplashScreen">
+	  <img src="/images/logo3.png" style="width:50%; height:50%;"/>
+	</div>
+	
+	<script>
+	
+	  setTimeout(function(){
+	  document.getElementById("SplashScreen").style.display="none";
+	  document.getElementById("mybody").style.overflow="scroll";
+	  },2000);
+	  
+	  var height =  document.getElementById("mybody").clientHeight;
+	  document.getElementById("drawer").style.height=height;
+	
+	  ViewPager();
+	  
+	  function ViewPager(){
+	  document.getElementById("game1").style.width="100%";
+	  document.getElementById("game2").style.width="100%";
+	  document.getElementById("game3").style.width="100%";
+	  
+	  var imagem = document.getElementById("game1").clientWidth;
+	
+	  document.getElementById("game1").style.marginLeft="0px";
+	
+	  document.getElementById("game2").style.marginLeft=imagem+"px";
+	
+	  document.getElementById("game3").style.marginLeft=imagem+imagem+"px";
+	
+	  document.getElementById("dot1").style.width="30px";
+	  document.getElementById("dot1").style.height="30px";
+	  document.getElementById("dot3").style.width="25px";
+	 document.getElementById("dot3").style.height="25px";
+	 
+	 
+	  setTimeout(function(){
+	  Page1("game1");
+	  },2000);
+	  
+	  }
+	  
+	  function Page1(id){
+	  if(id=="game1"){
+	  var count1 = document.getElementById("game1").clientWidth;
+	  var count2 = 0;
+	  var count3 = count1;
+	  var count4 = count1 + count1;
+	  var intervalo = setInterval(function(){
+	  if(count2=="-"+count1){
+	  document.getElementById("dot1").style.width="25px";
+	  document.getElementById("dot1").style.height="25px";
+	  
+	  document.getElementById("dot2").style.width="30px";
+	  document.getElementById("dot2").style.height="30px";
+	 
+	  clearInterval(intervalo);
+	  setTimeout(function(){
+	  Page2("game2");
+	  },2000);
+	  }else{
+	  document.getElementById("game1").style.marginLeft=count2--+"px";
+	  document.getElementById("game2").style.marginLeft=count3--+"px";
+	  document.getElementById("game3").style.marginLeft=count4--+"px";
+	  }
+	  },1);
+	 }
+	}
+	  function Page2(id){
+	  if(id=="game2"){
+	  var count1 = document.getElementById("game2").clientWidth;
+	  var count2 = 0;
+	  var count3 = count1;
+	  var intervalo = setInterval(function(){
+	  if(count2=="-"+count1){
+	  document.getElementById("dot1").style.width="25px";
+	  document.getElementById("dot2").style.width="25px";
+	  document.getElementById("dot1").style.height="25px";
+	  document.getElementById("dot2").style.height="25px";
+	  document.getElementById("dot3").style.width="30px";
+	  document.getElementById("dot3").style.height="30px";
+	  clearInterval(intervalo);
+	  setTimeout(function(){
+	  ViewPager();
+	  },2000);
+	  }else{
+	  document.getElementById("game2").style.marginLeft=count2--+"px";
+	  document.getElementById("game3").style.marginLeft=count3--+"px";
+	  }
+	  },1);
+	 }
+	}
+	</script>
+	  
+	<script>
+	  
+	 startHeaderAndList();
+	function startHeaderAndList(){
+	
+	
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerBattleRoyal.json");
+	
+	setTimeout(function(){
+	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	},2000);
+	
+	}
+	
+	  var VISIBLE = false;
+	  var searchedlist = 0;
+	  var searched = false;
+	  var Pagina = "";
+	  
+	  document.getElementById("top1").style.backgroundColor="#242424";
+	  Pagina="BattleRoyal";
+	
+	  document.getElementById("close").onclick = function(){
+	  var search = document.getElementById("search").style.marginLeft="0%";
+	  document.getElementById("close").style.marginLeft="0%";
+	  document.getElementById("searchedit").value="";
+	  document.getElementById("searchedit").style.visibility="hidden";
+	  VISIBLE=false;
+	  
+	  if(searchedlist==0){
+	  if(searched==true){
+	  updateList();
+	  searched=false;
+	  
+	  }
+	  
+	  }else{
+	  var card = document.getElementById(searchedlist);
+      document.getElementById("centro").removeChild(card);
+	  searchedlist=0;
+	  searched=false;
+	  setTimeout(function(){
+	  updateList();
+	  },1000);
+	  }
+	  };
+	  
+	  function updateList(){
+	  if(Pagina=="BattleRoyal"){
+	  getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerBattleRoyal.json");
+	  getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	
+	  }
+	  if(Pagina=="Ação"){
+	  getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerAcao.json");
+	  getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListAcao.json");
+	
+	  }
+	  if(Pagina=="Corrida"){
+	  getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerCorrida.json");
+	//getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	
+	  }
+	  if(Pagina=="Aventura"){
+	  
+	  }
+	  if(Pagina=="Luta"){
+	  
+	  }
+	  if(Pagina=="Rpg"){
+	  
+	  }
+	  if(Pagina=="Esporte"){
+	  
+	  }
+	  }
+	  
+	  var totallist;
+	  
+	  document.getElementById("search").onclick = function(){
+	  if(VISIBLE == false){
+	  VISIBLE=true;
+	  
+	  var edit = document.getElementById("searchedit").style.visibility="visible";
+	  document.getElementById("close").style.marginLeft="-11%";
+	
+	  }else{
+	  
+	  var edit = document.getElementById("searchedit").value;
+	  
+	  if(edit==""){
+	  
+	  }else{
+	 
+	  var search = document.getElementById("search").style.marginLeft="11%";
+	  document.getElementById("close").style.marginLeft="0%";
+	  searched=true;
+	  
+	  var content = document.getElementById("searchedit").value;
+	  var valor = content;
+	  var VALOR = valor.toLowerCase();
+
+      for(var ii = 0; ii<=totallist; ii++){
+
+      var V = document.getElementById("searchtag"+ii).innerHTML;
+
+      if (VALOR==V) {
+
+      searchedlist=ii;
+
+      }else{
+
+      var card = document.getElementById(ii);
+      document.getElementById("centro").removeChild(card);
+
+      }
+
+      }
+	  
+	  }
+	  }
+	  };
+	
+	  
+	  
+	  document.getElementById("panel").onclick = function(){
+	  hide();
+	  setTimeout(function(){
+	  closeDrawer();
+	  document.getElementById("drawer").style.display="none";
+	  SHOW=false;
+	  },800);
+	  };
+	  
+	  
+	  
+	  var SHOW=false;
+	  
+	  document.getElementById("viewitens").style.height="0px";
+	  
+	  document.getElementById("menu").onclick = function()
+	  {
+	  if(SHOW==false){
+	  
+	  SHOW=true;
+	  document.getElementById("drawer").style.display="block";
+	  openDrawer();
+	  setTimeout(function(){
+	  show();
+	  },100);
+	  
+	  }else{
+	  
+	  SHOW=false;
+	  hide();
+	  setTimeout(function(){
+	  closeDrawer();
+	  document.getElementById("drawer").style.display="none";
+	  },800);
+	  }
+	  
+	  };
+	  
+	  document.getElementById("top1").style.display="none";
+	  document.getElementById("top2").style.display="none";
+	  document.getElementById("top3").style.display="none";
+	  document.getElementById("top4").style.display="none";
+	  document.getElementById("top5").style.display="none";
+	  document.getElementById("top6").style.display="none";
+	  document.getElementById("top7").style.display="none";
+	
+	  
+	function openDrawer(){
+	document.getElementById("panel").className="PANEL";
+	
+	document.getElementById("list").style.overflow="hidden";
+	var height = document.getElementById("drawer").style.height;
+	document.getElementById("list").style.height=height;
+	var h = document.getElementById("list").clientHeight;
+	document.getElementById("list").style.height=h-461+"px";
+	 
+	document.getElementById("panel").style.height=height;
+	
+	var width1 = document.getElementById("mydiv").clientWidth/2;
+	var width2 = width1/2;
+	var total = width1+width2;
+	var i = 0;
+	for(var int = 0; int<=total;int++){
+	if(i==total){
+	
+	}else{
+	document.getElementById("drawer").style.width=int+"px";
+	}
+	}
+	}
+	
+	function closeDrawer(){
+	document.getElementById("panel").className=null;
+	document.getElementById("panel").style.height="0%";
+	
+	document.getElementById("list").style.overflow="scroll";
+	var vv = document.getElementById("list").style.height="100%";
+	 
+	var total = document.getElementById("drawer").clientWidth;
+	var i = total;
+	for(var int = 0; int<=total;int++){
+	if(total==-1){
+	
+	}else{
+	document.getElementById("drawer").style.width=i--+"px";
+	}
+	}
+	}
+	
+	 function show(){
+	 setTimeout(function(){
+	 document.getElementById("top1").style.display="flex";
+	 },100);
+	 setTimeout(function(){
+	 document.getElementById("top2").style.display="flex";
+	 },200);
+	 setTimeout(function(){
+	 document.getElementById("top3").style.display="flex";
+	 },300);
+	 setTimeout(function(){
+	 document.getElementById("top4").style.display="flex";
+	 },400);
+	 setTimeout(function(){
+	 document.getElementById("top5").style.display="flex";
+	 },500);
+	 setTimeout(function(){
+	 document.getElementById("top6").style.display="flex";
+	 },600);
+	 setTimeout(function(){
+	 document.getElementById("top7").style.display="flex";
+	 },700);
+	 }
+	
+	function hide(){
+	setTimeout(function(){
+	document.getElementById("top1").style.display="none";
+	document.getElementById("viewitens").style.top="47%";
+	document.getElementById("viewitens").style.height="0px";
+	},700);
+	setTimeout(function(){
+	document.getElementById("top2").style.display="none";
+	},600);
+	setTimeout(function(){
+	document.getElementById("top3").style.display="none";
+	},500);
+	setTimeout(function(){
+	document.getElementById("top4").style.display="none";
+	},400);
+	setTimeout(function(){
+	document.getElementById("top5").style.display="none";
+	},300);
+	setTimeout(function(){
+	document.getElementById("top6").style.display="none";
+	},200);
+	setTimeout(function(){
+	document.getElementById("top7").style.display="none";
+	},100);
+	}
+	
+	document.getElementById("top1").onclick = function(){
+	  TOP1();
+	  };
+	  
+	  document.getElementById("top2").onclick = function(){
+	  TOP2();
+	  };
+	  
+	  document.getElementById("top3").onclick = function(){
+	  TOP3();
+	  };
+	  
+	  document.getElementById("top4").onclick = function(){
+	  TOP4();
+	  };
+	  
+	  document.getElementById("top5").onclick = function(){
+	  TOP5();
+	  };
+	  
+	  document.getElementById("top6").onclick = function(){
+	  TOP6();
+	  };
+	  
+	  document.getElementById("top7").onclick = function(){
+	  TOP7();
+	  };
+	  
+	function TOP1(){
+	if(Pagina=="BattleRoyal"){
+	closeDrawerImediate();
+	}else{
+	Pagina="BattleRoyal";
+	document.getElementById("top1").style.background="#242424";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerBattleRoyal.json");
+	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	removelist();
+	}
+	}
+	function TOP2(){
+	if(Pagina=="Ação"){
+	closeDrawerImediate();
+	}else{
+	Pagina="Ação";
+	document.getElementById("top2").style.background="#242424";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerAcao.json");
+	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListAcao.json");
+	removelist();
+	}
+	}
+	function TOP3(){
+	if(Pagina=="Corrida"){
+	closeDrawerImediate();
+	}else{
+	Pagina="Corrida";
+	document.getElementById("top3").style.background="#242424";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerCorrida.json");
+	//getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	removelist();
+	}
+	}
+	
+	function TOP4(){
+	document.getElementById("top4").style.background="#242424";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerAventura.json");
+	//getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	removelist();
+	}
+	function TOP5(){
+	document.getElementById("top5").style.background="#242424";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerLuta.json");
+	//getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	removelist();
+	}
+	function TOP6(){
+	document.getElementById("top6").style.background="#242424";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top7").style.background="#121212";
+	closeDrawerImediate();
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerRPG.json");
+	//getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	removelist();
+	}
+	function TOP7(){
+	document.getElementById("top7").style.background="#242424";
+	document.getElementById("top3").style.background="#121212";
+	document.getElementById("top1").style.background="#121212";
+	document.getElementById("top2").style.background="#121212";
+	document.getElementById("top4").style.background="#121212";
+	document.getElementById("top5").style.background="#121212";
+	document.getElementById("top6").style.background="#121212";
+	
+	closeDrawerImediate();
+	}
+	
+	function closeDrawerImediate(){
+	SHOW=false;
+	  hide();
+	  setTimeout(function(){
+	  closeDrawer();
+	  document.getElementById("drawer").style.display="none";
+	  },800);
+	}
+	
+var getJSON = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+     if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};
+
+function getJsonHeaderURL(URL){
+$.getJSON(URL, function(data) {
+    // JSON result in `data` variable
+	var d = data;
+	var img1 = d[0].pagina1;
+	var img2 = d[0].pagina2;
+	var img3 = d[0].pagina3;
+	
+	document.getElementById("game1").src=img1;
+    document.getElementById("game2").src=img2;
+    document.getElementById("game3").src=img3;
+});
+
+}
+
+
+function removelist(){
+if(totallist==0){
+}else{
+for(var i = 0; i <= totallist; i++){
+var list = document.getElementById(i);
+document.getElementById("centro").removeChild(list);
+}
+}
+}
+
+function getJsonURL(URL){
+	  
+getJSON(URL).then(function(data) { // Replace <URL> With your URL
+var jsondata = data;
+jsondata.reverse();
+var i;
+for(i = 0; i<= jsondata.length;i++){
+totallist = i;
+var BANNER = jsondata[i].banner;
+var TITULO = jsondata[i].titulo;
+var DESCRICAO = jsondata[i].descricao;
+var DESENVOLVEDORA = jsondata[i].desenvolvedora;
+var CONECTIVIDADE = jsondata[i].conectividade;
+var LINK = jsondata[i].link;
+
+var div = document.createElement("div");
+div.setAttribute("class","card");
+div.setAttribute("id",""+i+"");
+div.setAttribute("name",""+TITULO);
+document.getElementById('centro').appendChild(div);
+//var ch = document.getElementById(i).getAttribute("name");
+//alert(ch);
+
+var element = document.getElementById("centro");
+element.insertBefore(div, element.firstChild);
+
+var imagem = document.createElement("img");
+imagem.src = BANNER;
+imagem.setAttribute('class','image');
+
+var searchtag = document.createElement("h4");
+searchtag.setAttribute('class','titulo');
+searchtag.setAttribute('id',"searchtag"+i+"");
+searchtag.innerHTML=TITULO.toLowerCase();
+searchtag.style.display="none";
+
+var titulo = document.createElement("h4");
+titulo.setAttribute('class','titulo');
+titulo.setAttribute("id","titulo"+i+"");
+titulo.innerHTML=TITULO;
+
+var descricao = document.createElement("h4");
+descricao.setAttribute('class','descricao');
+descricao.innerHTML=DESCRICAO;
+
+var desenvolvedora1 = document.createElement("h4");
+desenvolvedora1.innerHTML="Desenvolvedora:";
+desenvolvedora1.style.color="red";
+desenvolvedora1.style.marginLeft="10px";
+desenvolvedora1.style.marginTop="10px";
+desenvolvedora1.style.fontSize="20px";
+
+var desenvolvedora2 = document.createElement("h4");
+desenvolvedora2.setAttribute('class','desenvolvedora');
+desenvolvedora2.innerHTML=DESENVOLVEDORA;
+
+var desenvolvedora = document.createElement("div");
+desenvolvedora.setAttribute('class','Dev');
+desenvolvedora.appendChild(desenvolvedora1);
+desenvolvedora.appendChild(desenvolvedora2);
+
+var conectividade = document.createElement('img');
+conectividade.setAttribute('class','Conectividade');
+if(CONECTIVIDADE=="offline"){
+conectividade.src = "images/off.png";
+}else{
+conectividade.src = "images/on.png";
+}
+
+var link = document.createElement("p");
+link.setAttribute('class','LK');
+link.innerHTML=LINK;
+
+var Instalar = document.createElement("button");
+Instalar.setAttribute('class','install');
+Instalar.innerText="INSTALAR";
+
+document.getElementById(""+i+"").appendChild(imagem);
+document.getElementById(""+i+"").appendChild(searchtag);
+document.getElementById(""+i+"").appendChild(titulo);
+document.getElementById(""+i+"").appendChild(descricao);
+document.getElementById(""+i+"").appendChild(desenvolvedora);
+document.getElementById(""+i+"").appendChild(conectividade);
+document.getElementById(""+i+"").appendChild(link);
+document.getElementById(""+i+"").appendChild(Instalar);
+	
+var x = document.getElementsByClassName("install");
+var position = -1;
+var ad = false;
+for (var int = 0; int < x.length; int++) {
+
+  x[int].addEventListener('click', function() {
+  position++;
+  
+  if(ad==false){
+  ad=true;
+  setTimeout(function(){
+  var LINK = document.getElementsByClassName("LK")[position].innerHTML;
+  window.location.href=LINK;
+  position=-1;
+  ad=false;
+  },250);
+  
+  }
+  });
+}
+
+	}
+}, function(status) { //error detection....
+  alert('Something went wrong.');
+});
+}
+
+    </script>
+		
   </body>
+  
 </html>		
