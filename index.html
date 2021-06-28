@@ -718,11 +718,12 @@
 	}
 	
 	  var VISIBLE = false;
-	  var searchedlist = 0;
+	  var searchedlist = -1;
 	  var searched = false;
 	  var Pagina = "";
 	  var rotacao = 0;
 	  var loaddedlist = false;
+	  var asList = "t";
 	  
   var img = document.getElementById("PROGRESS");
   rotate(img,rotacao);
@@ -758,23 +759,42 @@
 	  document.getElementById("searchedit").style.visibility="hidden";
 	  VISIBLE=false;
 	  
-	  if(searchedlist==0){
+	  if(searchedlist==-1){
 	  if(searched==true){
+	  
+	  document.getElementById("PROGRESS").style.display="block";
+      rotate(img,rotacao);
+	  
 	  updateList();
 	  searched=false;
 	  
 	  }
 	  
 	  }else{
-	  var card = document.getElementById(searchedlist);
-      document.getElementById("centro").removeChild(card);
-	  searchedlist=0;
+	  //alert(searchedlist);
+	  
+	  remover(searchedlist);
+	  
+	  document.getElementById("PROGRESS").style.display="block";
+      rotate(img,rotacao);
+	  
+	  searchedlist=-1;
 	  searched=false;
 	  setTimeout(function(){
 	  updateList();
-	  },1000);
+	  },250);
 	  }
 	  };
+	  
+	  function remover(count){
+	  var card = document.getElementById(count);
+      document.getElementById("centro").removeChild(card);
+	  count--;
+	  var interval = setInterval(function(){
+	  clearInterval(interval);
+	  remover(count);
+	  },1);
+	  }
 	  
 	  function updateList(){
 	  if(Pagina=="BattleRoyal"){
@@ -824,7 +844,16 @@
 	  if(edit==""){
 	  
 	  }else{
-	 
+	 /*
+	  var dd = document.getElementById("searchedit").value;
+	  alert(dd);
+	  if(dd.includes("a")){
+	  alert("a");
+	  }else{
+	  alert("b");
+	  }*/
+	  
+	  
 	  var search = document.getElementById("search").style.marginLeft="11%";
 	  document.getElementById("close").style.marginLeft="0%";
 	  searched=true;
@@ -837,7 +866,7 @@
 
       var V = document.getElementById("searchtag"+ii).innerHTML;
 
-      if (VALOR==V) {
+      if (V.includes(VALOR)) {
 
       searchedlist=ii;
 
