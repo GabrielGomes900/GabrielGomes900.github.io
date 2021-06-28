@@ -162,7 +162,7 @@
 	 right:0;
 	 bottom:0;
 	 background-color:#121212;
-	 z-index:999;
+	 z-index:998;
 	 }
 	 
 	 .desenvolvedora{
@@ -294,7 +294,7 @@
 	 right:0;
 	 top:0;
 	 bottom:0;
-	 z-index:999;
+	 z-index:997;
 	 overflow:hidden;
 	 }
 	 
@@ -327,6 +327,103 @@
 	 margin-left:10px;
 	 margin-right:10px;
 	 padding:20px;
+	 }
+	 
+	 .googlecard{
+	 position:absolute;
+	 width:80%;
+	 height:80%;
+	 left:10%;
+	 bottom:5%;
+	 background-color:#121212;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:#212121;
+	 z-index:999;
+	 display:none;
+	 }
+	 
+	 .google_frame{
+	 border:0;
+	 width:100%;
+	 height:30%;
+	 }
+	 
+	 .google_div{
+	 width:100%;
+	 display:flex;flex-direction:row;justify-content:left
+	 }
+	 
+	 .google_icon_img{
+	 margin-top:10px;
+	 margin-left:10px;
+	 width:100px;
+	 height:100px;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:red;
+	 border-radius:4px;
+	 }
+	 
+	 .google_titulo{
+	 padding:0px;
+	 margin-left:20px;
+	 margin-top:40px;
+	 text-align:center;
+	 font-size:40px;
+	 font-weight:bold;
+	 color:#ffffff;
+	 }
+	 
+	 .google_desenvolvedora{
+	 margin-top:20px;
+	 margin-left:10px;
+	 text-align:left;
+	 font-size:30px;
+	 font-weight:bold;
+	 color:green;
+	 }
+	 
+	 .google_card_descricao{
+	 width:100%;
+	 height:40%;
+	 }
+	 
+	 .google_descricao{
+	 padding:20px;
+	 margin-top:30px;
+	 margin-left:10px;
+	 text-align:left;
+	 font-size:25px;
+	 font-style:normal;
+	 color:#CCCCCC;
+	 }
+	 
+	 .google_play_card{
+	 left:0;
+	 top:0;
+	 margin-top:10px;
+	 margin-right:90%;
+	 width:200px;
+	 height:100px;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:transparent;
+	 border-radius:4px;
+	 }
+	 
+	 .google_button_install{
+	 width:50%;
+	 height:100px;
+	 color:white;
+	 font-size:30px;
+	 background:green;
+	 border:solid;
+	 border-solid:1px;
+	 border-color:green;
+	 border-radius:8px;
+	 outline:none;
+	 margin-left:45%;
 	 }
 	 
 	</style>
@@ -501,6 +598,12 @@
 	  </div>
 	  
 	</div>
+	
+	<center>
+	  <div id="GoogleCard" class="googlecard">
+		
+	  </div>
+	</center>
 	
 	<div id="SplashScreen" class="SplashScreen">
 	  <img src="/logos/logo3.png" style="width:50%; height:50%;"/>
@@ -1143,7 +1246,8 @@ for (var int = 0; int < x.length; int++) {
   ad=true;
   setTimeout(function(){
   var LINK = document.getElementsByClassName("LK")[position].innerHTML;
-  window.location.href=LINK;
+  //window.location.href=LINK;
+  GOOGLECARD();
   position=-1;
   ad=false;
   },250);
@@ -1156,6 +1260,63 @@ for (var int = 0; int < x.length; int++) {
 }, function(status) { //error detection....
   alert('Something went wrong.');
 });
+}
+
+function GOOGLECARD(){
+
+document.getElementById("GoogleCard").style.display="block";
+
+var frame = document.createElement("iframe");
+frame.setAttribute("class","google_frame");
+frame.setAttribute("src","https://www.youtube.com/embed/st7eMfykiVE");
+frame.style.width="100%";
+frame.style.height="25%";
+
+var DIV = document.createElement("div");
+DIV.setAttribute("class","google_div");
+DIV.setAttribute("id","view_item1");
+
+var logo = document.createElement("img");
+logo.setAttribute("class","google_icon_img");
+logo.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8oqEIqWV8H6tGSAnmc067tndTeVgA9dtoOjN6ETNcwqsKLBM_IRiJ-ko&s=10";
+
+var titulo = document.createElement("h4");
+titulo.setAttribute("class","google_titulo");
+titulo.innerHTML="Mordern Combat 5";
+
+var desenvolvedora = document.createElement("h4");
+desenvolvedora.setAttribute("class","google_desenvolvedora");
+desenvolvedora.innerHTML="Gameloft SE";
+
+var DIV2 = document.createElement("div");
+DIV2.setAttribute("class","google_card_descricao");
+DIV2.setAttribute("id","view_item2");
+
+var descricao = document.createElement("h4");
+descricao.setAttribute("class","google_descricao");
+descricao.innerHTML="Modern Combat 5: Blackout é um jogo de tiro em primeira pessoa desenvolvido pela Wil Lane Bucareste e publicado pela Gameloft. É a quinta edição da série Modern Combat, é a sequência de Modern Combat 4: Zero Hour. Ele foi lançado no dia 24 de julho, 2014 para iOS, Android, Windows Phone 8, Windows 8.1 e BlackBerry";
+
+var playcard = document.createElement("img");
+playcard.setAttribute("class","google_play_card");
+playcard.src = "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png?hl=pt-br";
+
+var button = document.createElement("button");
+button.setAttribute("class","google_button_install");
+button.innerHTML="INSTALAR";
+
+document.getElementById("GoogleCard").appendChild(frame);
+document.getElementById("GoogleCard").appendChild(DIV);
+document.getElementById("GoogleCard").appendChild(desenvolvedora);
+document.getElementById("GoogleCard").appendChild(DIV2);
+document.getElementById("GoogleCard").appendChild(playcard);
+document.getElementById("GoogleCard").appendChild(button);
+
+
+document.getElementById("view_item1").appendChild(logo);
+document.getElementById("view_item1").appendChild(titulo);
+document.getElementById("view_item2").appendChild(descricao);
+
+
 }
 
     </script>
