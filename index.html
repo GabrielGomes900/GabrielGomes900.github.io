@@ -460,9 +460,12 @@
 	</div>
 	
 	<div id="viewitenss" style="margin-top:47%;height:0px">
-	 
-	</div>
-	
+	 </div>
+		
+	<center>
+		  <img id="PROGRESS" style="width:200px;height:200px" src="/images/bg.png">
+	</center>
+		
 	<div id="list" class="wrapper">
 	  
 	  <center id="centro" style="vertical-align: top;flex-wrap: wrap-reverse;">
@@ -706,10 +709,10 @@
 	function startHeaderAndList(){
 	
 	
-	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerAcao.json");
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerBattleRoyal.json");
 	
 	setTimeout(function(){
-	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListAcao.json");
+	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
 	},2000);
 	
 	}
@@ -718,9 +721,35 @@
 	  var searchedlist = 0;
 	  var searched = false;
 	  var Pagina = "";
+	  var rotacao = 0;
+	  var loaddedlist = false;
+	  
+  var img = document.getElementById("PROGRESS");
+  rotate(img,rotacao);
+	 
+  function rotate(image,r) {
+  if(rotacao==360){
+  
+  }else{
+  var rotateAngle = Number(image.getAttribute("rotangle")) + rotacao;
+  image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+  image.setAttribute("rotangle", "" + rotateAngle);
+  rotacao++;
+  var inter = setInterval(function(){
+  clearInterval(inter);
+  if(loaddedlist==false){
+  rotate(image,rotacao);
+  }else{
+  loaddedlist=false;
+  rotacao=0;
+  document.getElementById("PROGRESS").style.display="none";
+  }
+  },100);
+  }
+}
 	  
 	  document.getElementById("top1").style.backgroundColor="#242424";
-	  Pagina="Acao";
+	  Pagina="BattleRoyal";
 	
 	  document.getElementById("close").onclick = function(){
 	  var search = document.getElementById("search").style.marginLeft="0%";
@@ -784,7 +813,9 @@
 	  VISIBLE=true;
 	  
 	  var edit = document.getElementById("searchedit").style.visibility="visible";
-	  document.getElementById("close").style.marginLeft="-11%";
+	  document.getElementById("search").style.marginLeft="11%";
+	
+	  document.getElementById("close").style.marginLeft="-0%";
 	
 	  }else{
 	  
@@ -965,10 +996,14 @@
 	}
 	
 	document.getElementById("top1").onclick = function(){
+	document.getElementById("PROGRESS").style.display="block";
+	rotate(img,rotacao);
 	  TOP1();
 	  };
 	  
 	  document.getElementById("top2").onclick = function(){
+	  document.getElementById("PROGRESS").style.display="block";
+	  rotate(img,rotacao);
 	  TOP2();
 	  };
 	  
@@ -1157,6 +1192,9 @@ var jsondata = data;
 jsondata.reverse();
 var i;
 for(i = 0; i<= jsondata.length;i++){
+if(loaddedlist==false){
+loaddedlist=true;
+}
 totallist = i;
 var BANNER = jsondata[i].banner;
 var TITULO = jsondata[i].titulo;
