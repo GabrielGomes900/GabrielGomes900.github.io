@@ -329,7 +329,7 @@
 	 padding:20px;
 	 }
 	 
-	 .googlecard{
+	 .google_card{
 	 position:absolute;
 	 width:80%;
 	 height:80%;
@@ -339,8 +339,10 @@
 	 border:solid;
 	 border-solid:1px;
 	 border-color:#212121;
+	 box-shadow:0px 0px 50px 0px #121;
 	 z-index:999;
 	 display:none;
+	 overflow:hidden;
 	 }
 	 
 	 .google_frame{
@@ -361,15 +363,17 @@
 	 height:100px;
 	 border:solid;
 	 border-solid:1px;
-	 border-color:red;
+	 border-color:transparent;
 	 border-radius:4px;
 	 }
 	 
 	 .google_titulo{
-	 padding:0px;
+	 background:transparent;
+	 height:100px;
 	 margin-left:20px;
-	 margin-top:40px;
-	 text-align:center;
+	 margin-top:10px;
+	 text-align:left;
+	 items-align:center;
 	 font-size:40px;
 	 font-weight:bold;
 	 color:#ffffff;
@@ -599,10 +603,8 @@
 	  
 	</div>
 	
-	<center>
-	  <div id="GoogleCard" class="googlecard">
-		
-	  </div>
+	<center id="centro2">
+	  <div id="GooglePanel"><a name="TOP"></a></div>
 	</center>
 	
 	<div id="SplashScreen" class="SplashScreen">
@@ -704,10 +706,10 @@
 	function startHeaderAndList(){
 	
 	
-	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerBattleRoyal.json");
+	getJsonHeaderURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ViewPagerAcao.json");
 	
 	setTimeout(function(){
-	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListBattleRoyal.json");
+	getJsonURL("https://raw.githubusercontent.com/GabrielGomes900/IMT/main/USERS/GABRIEL/ListAcao.json");
 	},2000);
 	
 	}
@@ -718,7 +720,7 @@
 	  var Pagina = "";
 	  
 	  document.getElementById("top1").style.backgroundColor="#242424";
-	  Pagina="BattleRoyal";
+	  Pagina="Acao";
 	
 	  document.getElementById("close").onclick = function(){
 	  var search = document.getElementById("search").style.marginLeft="0%";
@@ -1237,19 +1239,36 @@ document.getElementById(""+i+"").appendChild(Instalar);
 var x = document.getElementsByClassName("install");
 var position = -1;
 var ad = false;
+var reversed=false;
+var jsondata2 = data;
+
 for (var int = 0; int < x.length; int++) {
 
   x[int].addEventListener('click', function() {
   position++;
-  
   if(ad==false){
   ad=true;
   setTimeout(function(){
-  var LINK = document.getElementsByClassName("LK")[position].innerHTML;
+  //var LINK = document.getElementsByClassName("LK")[position].innerHTML;
   //window.location.href=LINK;
-  GOOGLECARD();
+  //alert(LINK);
+  
+ if(reversed==false){
+  jsondata2.reverse();
+  reversed=true;
+  }
+  
+  var Google_Iframe = jsondata2[position].google_iframe;
+  var Google_Logo = jsondata2[position].google_logo;
+  var Google_Titulo = jsondata2[position].titulo;
+  var Google_Desenvolvedora = jsondata2[position].desenvolvedora;
+  var Google_Descricao = jsondata2[position].descricao;
+  
+  GOOGLECARD(Google_Iframe,Google_Logo,Google_Titulo,Google_Desenvolvedora,Google_Descricao);
+  
   position=-1;
   ad=false;
+  
   },250);
   
   }
@@ -1262,13 +1281,38 @@ for (var int = 0; int < x.length; int++) {
 });
 }
 
-function GOOGLECARD(){
+function GOOGLECARD(Google_Iframe,Google_Logo,Google_Titulo,Google_Desencolvedora,Google_Descricao){
 
+window.location.href="#TOP";
+
+window.history.pushState(null,window.location.href,"/");
+
+document.getElementById("mybody").style.overflow="hidden";
+
+var GooglePanel = document.getElementById("GooglePanel");
+GooglePanel.className="PANEL";
+
+var Google_Card = document.createElement("div");
+Google_Card.setAttribute("id","GoogleCard");
+Google_Card.setAttribute("class","google_card");
+document.getElementById("centro2").appendChild(Google_Card);
 document.getElementById("GoogleCard").style.display="block";
+
+GooglePanel.onclick = function(){
+document.getElementById("GoogleCard").style.display="none";
+document.getElementById("mybody").style.overflow="scroll";
+document.getElementById("centro2").removeChild(GoogleCard);
+
+var GooglePanel = document.getElementById("GooglePanel");
+GooglePanel.className=null;
+};
 
 var frame = document.createElement("iframe");
 frame.setAttribute("class","google_frame");
-frame.setAttribute("src","https://www.youtube.com/embed/st7eMfykiVE");
+
+Google_Iframe=Google_Iframe.replace("https://youtu.be/","https://www.youtube.com/embed/");
+
+frame.setAttribute("src",Google_Iframe);
 frame.style.width="100%";
 frame.style.height="25%";
 
@@ -1278,15 +1322,16 @@ DIV.setAttribute("id","view_item1");
 
 var logo = document.createElement("img");
 logo.setAttribute("class","google_icon_img");
-logo.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8oqEIqWV8H6tGSAnmc067tndTeVgA9dtoOjN6ETNcwqsKLBM_IRiJ-ko&s=10";
+logo.src = Google_Logo;
+//alert(Google_Logo);
 
 var titulo = document.createElement("h4");
 titulo.setAttribute("class","google_titulo");
-titulo.innerHTML="Mordern Combat 5";
+titulo.innerHTML=""+Google_Titulo;
 
 var desenvolvedora = document.createElement("h4");
 desenvolvedora.setAttribute("class","google_desenvolvedora");
-desenvolvedora.innerHTML="Gameloft SE";
+desenvolvedora.innerHTML=""+Google_Desencolvedora;
 
 var DIV2 = document.createElement("div");
 DIV2.setAttribute("class","google_card_descricao");
@@ -1294,7 +1339,7 @@ DIV2.setAttribute("id","view_item2");
 
 var descricao = document.createElement("h4");
 descricao.setAttribute("class","google_descricao");
-descricao.innerHTML="Modern Combat 5: Blackout é um jogo de tiro em primeira pessoa desenvolvido pela Wil Lane Bucareste e publicado pela Gameloft. É a quinta edição da série Modern Combat, é a sequência de Modern Combat 4: Zero Hour. Ele foi lançado no dia 24 de julho, 2014 para iOS, Android, Windows Phone 8, Windows 8.1 e BlackBerry";
+descricao.innerHTML=""+Google_Descricao;
 
 var playcard = document.createElement("img");
 playcard.setAttribute("class","google_play_card");
